@@ -18,7 +18,7 @@
             get { return string.Format("{0} {1} {2}", _x, _y, _orientation); }
         }
 
-        public void TurnLeft()
+        private void TurnLeft()
         {
             switch (_orientation)
             {
@@ -37,7 +37,7 @@
             }
         }
 
-        public void TurnRight()
+        private void TurnRight()
         {
             switch (_orientation)
             {
@@ -56,7 +56,7 @@
             }
         }
 
-        public void MoveForward()
+        private void MoveForward()
         {
             switch (_orientation)
             {
@@ -72,6 +72,25 @@
                 case 'W':
                     _x--;
                     break;
+            }
+        }
+
+        public void ProcessCommands(string instructions)
+        {
+            foreach (char instruction in instructions)
+            {
+                switch (instruction)
+                {
+                    case '^':
+                        MoveForward();
+                        break;
+                    case '<':
+                        TurnLeft();
+                        break;
+                    case '>':
+                        TurnRight();
+                        break;
+                }
             }
         }
     }

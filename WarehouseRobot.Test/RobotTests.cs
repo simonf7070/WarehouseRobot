@@ -25,7 +25,7 @@ namespace WarehouseRobot.Test
         public string RobotTurnsLeftWithoutMoving(int x, int y, char orientation)
         {
             var robot = new Robot(x, y, orientation);
-            robot.TurnLeft();
+            robot.ProcessCommands("<");
             return robot.Position;
         }
 
@@ -37,8 +37,7 @@ namespace WarehouseRobot.Test
         public string RobotTurnsLeftTwiceWithoutMoving(int x, int y, char orientation)
         {
             var robot = new Robot(x, y, orientation);
-            robot.TurnLeft();
-            robot.TurnLeft();
+            robot.ProcessCommands("<<");
             return robot.Position;
         }
 
@@ -50,7 +49,7 @@ namespace WarehouseRobot.Test
         public string RobotTurnsRightWithoutMoving(int x, int y, char orientation)
         {
             var robot = new Robot(x, y, orientation);
-            robot.TurnRight();
+            robot.ProcessCommands(">");
             return robot.Position;
         }
         
@@ -61,7 +60,7 @@ namespace WarehouseRobot.Test
         public string RobotFacingMovesForwardOnce(int x, int y, char orientation)
         {
             var robot = new Robot(x, y, orientation);
-            robot.MoveForward();
+            robot.ProcessCommands("^");
             return robot.Position;
         }
 
@@ -69,17 +68,15 @@ namespace WarehouseRobot.Test
         public void RobotFacingNorthMovesForwardTwice()
         {
             var robot = new Robot(0, 0, 'N');
-            robot.MoveForward();
-            robot.MoveForward();
+            robot.ProcessCommands("^^");
             Assert.That(robot.Position, Is.EqualTo("0 2 N"));
         }
 
         [Test]
-        public void RobotFacingNorthTurnsLeftTheMovesForward()
+        public void RobotFacingNorthTurnsLeftThenMovesForward()
         {
             var robot = new Robot(1, 0, 'N');
-            robot.TurnLeft();
-            robot.MoveForward();
+            robot.ProcessCommands("<^");
             Assert.That(robot.Position, Is.EqualTo("0 0 W"));
         }
     }
