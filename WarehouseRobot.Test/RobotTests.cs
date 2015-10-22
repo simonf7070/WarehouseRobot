@@ -53,21 +53,16 @@ namespace WarehouseRobot.Test
             robot.TurnRight();
             return robot.Position;
         }
-
-        [Test]
-        public void RobotFacingNorthMovesForwardOnce()
+        
+        [TestCase(0, 0, 'N', ExpectedResult = "0 1 N")]
+        [TestCase(0, 0, 'E', ExpectedResult = "1 0 E")]
+        [TestCase(0, 1, 'S', ExpectedResult = "0 0 S")]
+        [TestCase(1, 0, 'W', ExpectedResult = "0 0 W")]
+        public string RobotFacingMovesForwardOnce(int x, int y, char orientation)
         {
-            var robot = new Robot(0, 0, 'N');
+            var robot = new Robot(x, y, orientation);
             robot.MoveForward();
-            Assert.That(robot.Position, Is.EqualTo("0 1 N"));
-        }
-
-        [Test]
-        public void RobotFacingEastMovesForwardOnce()
-        {
-            var robot = new Robot(0, 0, 'E');
-            robot.MoveForward();
-            Assert.That(robot.Position, Is.EqualTo("1 0 E"));
+            return robot.Position;
         }
     }
 }

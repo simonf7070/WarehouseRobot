@@ -58,13 +58,20 @@
 
         public void MoveForward()
         {
-            if (_orientation == 'N')
+            switch (_orientation)
             {
-                _y++;
-            }
-            else
-            {
-                _x++;
+                case 'N':
+                    _y++;
+                    break;
+                case 'E':
+                    _x++;
+                    break;
+                case 'S':
+                    _y--;
+                    break;
+                case 'W':
+                    _x--;
+                    break;
             }
         }
     }
