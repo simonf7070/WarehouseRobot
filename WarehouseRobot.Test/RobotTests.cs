@@ -16,37 +16,17 @@ namespace WarehouseRobot.Test
             var robot = new Robot(x, y, orientation);
             Assert.That(robot.Position, Is.EqualTo(expectedPosition));
         }
-
-        [Test]
-        public void RobotTurnsLeftWithoutMovingStartFacingNorth()
+        
+        [TestCase(0, 0, 'N', ExpectedResult = "0 0 W")]
+        [TestCase(0, 0, 'E', ExpectedResult = "0 0 N")]
+        [TestCase(0, 0, 'S', ExpectedResult = "0 0 E")]
+        [TestCase(0, 0, 'W', ExpectedResult = "0 0 S")]
+        [TestCase(3, 5, 'W', ExpectedResult = "3 5 S")]
+        public string RobotTurnsLeftWithoutMoving(int x, int y, char orientation)
         {
-            var robot = new Robot(0, 0, 'N');
+            var robot = new Robot(x, y, orientation);
             robot.TurnLeft();
-            Assert.That(robot.Position, Is.EqualTo("0 0 W"));
-        }
-
-        [Test]
-        public void RobotTurnsLeftWithoutMovingStartFacingEast()
-        {
-            var robot = new Robot(0, 0, 'E');
-            robot.TurnLeft();
-            Assert.That(robot.Position, Is.EqualTo("0 0 N"));
-        }
-
-        [Test]
-        public void RobotTurnsLeftWithoutMovingStartFacingSouth()
-        {
-            var robot = new Robot(0, 0, 'S');
-            robot.TurnLeft();
-            Assert.That(robot.Position, Is.EqualTo("0 0 E"));
-        }
-
-        [Test]
-        public void RobotTurnsLeftWithoutMovingStartFacingWest()
-        {
-            var robot = new Robot(0, 0, 'W');
-            robot.TurnLeft();
-            Assert.That(robot.Position, Is.EqualTo("0 0 S"));
+            return robot.Position;
         }
     }
 }
