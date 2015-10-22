@@ -2,7 +2,7 @@
 {
     public class Robot
     {    
-        private readonly int _x;
+        private int _x;
         private int _y;
         private char _orientation;
 
@@ -61,6 +61,10 @@
             if (_orientation == 'N')
             {
                 _y++;
+            }
+            else
+            {
+                _x++;
             }
         }
     }

@@ -61,5 +61,13 @@ namespace WarehouseRobot.Test
             robot.MoveForward();
             Assert.That(robot.Position, Is.EqualTo("0 1 N"));
         }
+
+        [Test]
+        public void RobotFacingEastMovesForwardOnce()
+        {
+            var robot = new Robot(0, 0, 'E');
+            robot.MoveForward();
+            Assert.That(robot.Position, Is.EqualTo("1 0 E"));
+        }
     }
 }
