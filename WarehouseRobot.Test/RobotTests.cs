@@ -16,5 +16,13 @@ namespace WarehouseRobot.Test
             var robot = new Robot(x, y, orientation);
             Assert.That(robot.Position, Is.EqualTo(expectedPosition));
         }
+
+        [Test]
+        public void RobotTurnsLeftWithoutMoving()
+        {
+            var robot = new Robot(0, 0, 'N');
+            robot.TurnLeft();
+            Assert.That(robot.Position, Is.EqualTo("0 0 W"));
+        }
     }
 }
