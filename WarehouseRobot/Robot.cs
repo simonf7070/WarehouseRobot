@@ -24,6 +24,14 @@
             {
                 _orientation = 'W';
             }
+            else if (_orientation == 'E')
+            {
+                _orientation = 'N';
+            }
+            else
+            {
+                _orientation = 'E';
+            }
         }
     }
 }

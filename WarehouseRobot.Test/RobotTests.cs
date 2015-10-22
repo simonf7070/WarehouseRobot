@@ -18,11 +18,27 @@ namespace WarehouseRobot.Test
         }
 
         [Test]
-        public void RobotTurnsLeftWithoutMoving()
+        public void RobotTurnsLeftWithoutMovingStartFacingNorth()
         {
             var robot = new Robot(0, 0, 'N');
             robot.TurnLeft();
             Assert.That(robot.Position, Is.EqualTo("0 0 W"));
+        }
+
+        [Test]
+        public void RobotTurnsLeftWithoutMovingStartFacingEast()
+        {
+            var robot = new Robot(0, 0, 'E');
+            robot.TurnLeft();
+            Assert.That(robot.Position, Is.EqualTo("0 0 N"));
+        }
+
+        [Test]
+        public void RobotTurnsLeftWithoutMovingStartFacingSouth()
+        {
+            var robot = new Robot(0, 0, 'S');
+            robot.TurnLeft();
+            Assert.That(robot.Position, Is.EqualTo("0 0 E"));
         }
     }
 }
