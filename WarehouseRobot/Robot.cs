@@ -3,7 +3,7 @@
     public class Robot
     {    
         private readonly int _x;
-        private readonly int _y;
+        private int _y;
         private char _orientation;
 
         public Robot(int startX, int startY, char startOrientation)
@@ -53,6 +53,14 @@
                 case 'W':
                     _orientation = 'N';
                     break;
+            }
+        }
+
+        public void MoveForward()
+        {
+            if (_orientation == 'N')
+            {
+                _y++;
             }
         }
     }
