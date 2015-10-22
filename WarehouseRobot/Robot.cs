@@ -20,17 +20,20 @@
 
         public void TurnLeft()
         {
-            if (_orientation == 'N')
+            switch (_orientation)
             {
-                _orientation = 'W';
-            }
-            else if (_orientation == 'E')
-            {
-                _orientation = 'N';
-            }
-            else
-            {
-                _orientation = 'E';
+                case 'N':
+                    _orientation = 'W';
+                    break;
+                case 'E':
+                    _orientation = 'N';
+                    break;
+                case 'S':
+                    _orientation = 'E';
+                    break;
+                case 'W':
+                    _orientation = 'S';
+                    break;
             }
         }
     }
