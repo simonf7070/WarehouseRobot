@@ -41,5 +41,17 @@ namespace WarehouseRobot.Test
             robot.TurnLeft();
             return robot.Position;
         }
+
+        [TestCase(0, 0, 'N', ExpectedResult = "0 0 E")]
+        [TestCase(0, 0, 'E', ExpectedResult = "0 0 S")]
+        [TestCase(0, 0, 'S', ExpectedResult = "0 0 W")]
+        [TestCase(0, 0, 'W', ExpectedResult = "0 0 N")]
+        [TestCase(3, 5, 'W', ExpectedResult = "3 5 N")]
+        public string RobotTurnsRightWithoutMoving(int x, int y, char orientation)
+        {
+            var robot = new Robot(x, y, orientation);
+            robot.TurnRight();
+            return robot.Position;
+        }
     }
 }

@@ -36,5 +36,24 @@
                     break;
             }
         }
+
+        public void TurnRight()
+        {
+            switch (_orientation)
+            {
+                case 'N':
+                    _orientation = 'E';
+                    break;
+                case 'E':
+                    _orientation = 'S';
+                    break;
+                case 'S':
+                    _orientation = 'W';
+                    break;
+                case 'W':
+                    _orientation = 'N';
+                    break;
+            }
+        }
     }
 }
