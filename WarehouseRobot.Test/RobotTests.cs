@@ -79,5 +79,21 @@ namespace WarehouseRobot.Test
             robot.ProcessCommands("<^");
             Assert.That(robot.Position, Is.EqualTo("0 0 W"));
         }
+
+        [Test]
+        public void RobotFollowsCommandSequence_InputOne()
+        {
+            var robot = new Robot(1, 2, 'N');
+            robot.ProcessCommands("<^<^<^<^^");
+            Assert.That(robot.Position, Is.EqualTo("1 3 N"));
+        }
+
+        [Test]
+        public void RobotFollowsCommandSequence_InputTwo()
+        {
+            var robot = new Robot(3, 3, 'E');
+            robot.ProcessCommands("^^>^^>^>>^");
+            Assert.That(robot.Position, Is.EqualTo("5 1 E"));
+        }
     }
 }
