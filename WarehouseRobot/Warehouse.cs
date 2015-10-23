@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace WarehouseRobot.Test
+namespace WarehouseRobot
 {
-    public class Warehouse
+    public class Warehouse : IWarehouse
     {
         private const int LowerX = 0;
         private const int LowerY = 0;

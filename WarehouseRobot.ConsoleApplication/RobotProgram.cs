@@ -8,19 +8,21 @@ namespace WarehouseRobot.ConsoleApplication
         static void Main(string[] args)
         { 
             var gridSize = GetGridSize();
+            var warehouse = new Warehouse(gridSize[0], gridSize[1]);
+            
             var robotProgram = new RobotProgram();
             while (true)
             {
-                robotProgram.Run();
+                robotProgram.Run(warehouse);
             }
         }
         
-        private void Run()
+        private void Run(IWarehouse warehouse)
         {
             var startPosition = GetRobotStartingPosition();
             var commands = GetRobotCommands();
 
-            var robot = new Robot(int.Parse(startPosition[0]), int.Parse(startPosition[1]), char.Parse(startPosition[2].ToUpper()));
+            var robot = new Robot(warehouse, int.Parse(startPosition[0]), int.Parse(startPosition[1]), char.Parse(startPosition[2].ToUpper()));
             robot.ProcessCommands(commands);
             Console.WriteLine("Robots new position: " + robot.Position);
         }

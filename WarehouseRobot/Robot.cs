@@ -1,13 +1,15 @@
 ﻿namespace WarehouseRobot
 {
     public class Robot
-    {    
+    {
+        private readonly IWarehouse _warehouse;
         private int _x;
         private int _y;
         private char _orientation;
 
-        public Robot(int startX, int startY, char startOrientation)
+        public Robot(IWarehouse warehouse, int startX, int startY, char startOrientation)
         {
+            _warehouse = warehouse;
             _x = startX;
             _y = startY;
             _orientation = startOrientation;
@@ -58,20 +60,29 @@
 
         private void MoveForward()
         {
+            var newPositionX = _x;
+            var newPositionY = _y;
+            
             switch (_orientation)
             {
                 case 'N':
-                    _y++;
+                    newPositionY = _y + 1;
                     break;
                 case 'E':
-                    _x++;
+                    newPositionX = _x + 1;
                     break;
                 case 'S':
-                    _y--;
+                    newPositionY = _y - 1;
                     break;
                 case 'W':
-                    _x--;
+                    newPositionX = _x - 1;
                     break;
+            }
+
+            if (_warehouse.IsValidCoordinate(newPositionX, newPositionY))
+            {
+                _x = newPositionX;
+                _y = newPositionY;
             }
         }
 
