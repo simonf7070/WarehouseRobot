@@ -1,4 +1,7 @@
-﻿namespace WarehouseRobot
+﻿using System;
+using System.Linq;
+
+namespace WarehouseRobot
 {
     public class Robot
     {
@@ -9,6 +12,17 @@
 
         public Robot(IWarehouse warehouse, int startX, int startY, char startOrientation)
         {
+            const string compassPoints = "NESW";
+            if (!compassPoints.Contains(startOrientation))
+            {
+                throw new Exception("Invalid orientation");
+            }
+
+            if (!warehouse.IsValidCoordinate(startX, startY))
+            {
+                throw new Exception("Invalid position");
+            }
+
             _warehouse = warehouse;
             _x = startX;
             _y = startY;

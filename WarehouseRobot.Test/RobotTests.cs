@@ -110,12 +110,29 @@ namespace WarehouseRobot.Test
         public void RobotTriesToMoveOutsideOfWarehouseShouldNotMove()
         {
             var warehouse = new Mock<IWarehouse>();
-            warehouse.Setup(w => w.IsValidCoordinate(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+            warehouse.Setup(w => w.IsValidCoordinate(It.IsAny<int>(), It.IsAny<int>())).Returns(true);
             var robot = new Robot(warehouse.Object, 5, 5, 'N');
+            warehouse.Setup(w => w.IsValidCoordinate(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
 
             robot.ProcessCommands("^");
 
             Assert.That(robot.Position, Is.EqualTo("5 5 N"));
+        }
+
+        [Test]
+        [ExpectedException]
+        public void RobotCreatedWithInvalidOrientation()
+        {
+            var robot = new Robot(_warehouse.Object, 0, 0, 'X');
+        }
+
+        [Test]
+        [ExpectedException]
+        public void RobotCreatedWithInvalidWarehouseLocation()
+        {
+            var warehouse = new Mock<IWarehouse>();
+            warehouse.Setup(w => w.IsValidCoordinate(It.IsAny<int>(), It.IsAny<int>())).Returns(false);
+            var robot = new Robot(warehouse.Object, 0, 0, 'N');
         }
     }
 }
